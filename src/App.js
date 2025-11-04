@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { StrudelMirror } from '@strudel/codemirror';
 import { evalScope } from '@strudel/core';
 import { drawPianoroll } from '@strudel/draw';
@@ -8,7 +8,12 @@ import { transpiler } from '@strudel/transpiler';
 import { getAudioContext, webaudioOutput, registerSynthSounds } from '@strudel/webaudio';
 import { registerSoundfonts } from '@strudel/soundfonts';
 import { stranger_tune } from './tunes';
-import console_monkey_patch, { getD3Data } from './console-monkey-patch';
+import console_monkey_patch from './console-monkey-patch';
+
+// importing app functions
+import { Proc } from './textProcessor';
+import Controls from './components/controls';
+import EditorArea from './components/editorArea';
 
 let globalEditor = null;
 
@@ -20,11 +25,11 @@ export function SetupButtons() {
     document.getElementById('play').addEventListener('click', () => globalEditor.evaluate());
     document.getElementById('stop').addEventListener('click', () => globalEditor.stop());
     document.getElementById('process').addEventListener('click', () => {
-        Proc()
+        Proc(globalEditor)
     })
     document.getElementById('process_play').addEventListener('click', () => {
         if (globalEditor != null) {
-            Proc()
+            Proc(globalEditor)
             globalEditor.evaluate()
         }
     })
@@ -33,48 +38,13 @@ export function SetupButtons() {
 export function ProcAndPlay() {
     if (globalEditor != null && globalEditor.repl.state.started === true) {
         console.log(globalEditor)
-        Proc()
+        Proc(globalEditor)
         globalEditor.evaluate();
     }
 }
 
-export function Proc() {
-    let proc_text = document.getElementById('proc').value
-    let proc_text_replaced = proc_text.replaceAll('<p1_Radio>', soundToggle('p1'));
-    // handle for p2 controls
-    proc_text_replaced = proc_text_replaced.replaceAll('<p2_Radio>', soundToggle('p2'));
-    proc_text_replaced = proc_text_replaced.replaceAll('<drums_Toggle>', document.getElementById('drumsCheck').checked ? '1' : '0');
-    proc_text_replaced = proc_text_replaced.replaceAll('<pattern_Idx>', document.getElementById('patternSelect').value);
-    proc_text_replaced = proc_text_replaced.replaceAll('<bass_Idx>', document.getElementById('basslineSelect').value); 
-    proc_text_replaced = proc_text_replaced.replaceAll('<reverb_Val>', document.getElementById('reverbSlider').value); 
-    globalEditor.setCode(proc_text_replaced)
-}
-
-export function soundToggle(control) {
-    // when starting the webapp the controls will default to on and not muted
-    // so gain = 1
-    let replace = "1"
-
-    if (control === 'p1') {
-        if (document.getElementById('flexRadioDefault2').checked) {
-            // if toggled mute p1 (baseline)
-            replace = "0"
-        }
-    } else if (control === 'p2') {
-        if (document.getElementById('p2RadioDefault2').checked) {
-            // if toggled mute p2 (arpeggio)
-            replace = "0"
-        }
-    }
-
-    return replace
-}
-
 export default function StrudelDemo() {
     const hasRun = useRef(false);
-
-    //Add state for displaying reverb value
-    const [reverbValue, setReverbValue] = useState(0.6); 
 
     useEffect(() => {
         if (!hasRun.current) {
@@ -109,7 +79,7 @@ export default function StrudelDemo() {
 
             document.getElementById('proc').value = stranger_tune
             SetupButtons()
-            Proc()
+            Proc(globalEditor)
         }
     }, []);
 
@@ -118,128 +88,10 @@ export default function StrudelDemo() {
             <h2>Strudel Demo</h2>
             <main>
                 <div className="container-fluid">
+                    <EditorArea />
                     <div className="row">
-                        <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
-                            <label htmlFor="exampleFormControlTextarea1" className="form-label">Text to preprocess:</label>
-                            <textarea className="form-control" rows="15" id="proc" ></textarea>
-                        </div>
-                        <div className="col-md-4">
-                            <nav>
-                                <button id="process" className="btn btn-outline-primary">Preprocess</button>
-                                <button id="process_play" className="btn btn-outline-primary">Proc & Play</button>
-                                <br />
-                                <button id="play" className="btn btn-outline-primary">Play</button>
-                                <button id="stop" className="btn btn-outline-primary">Stop</button>
-                            </nav>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
-                            <div id="editor" />
-                            <div id="output" />
-                        </div>
-                        <div className="col-md-4">
-                            <h5>Controls</h5>
-
-                            {/* P1 controls for baseline */}
-                            <div className="mb-3">
-                                <label className="form-label">Bassline (p1)</label>
-                                <div className="form-check">
-                                    <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" onChange={ProcAndPlay} defaultChecked />
-                                    <label className="form-check-label" htmlFor="flexRadioDefault1">
-                                        ON
-                                    </label>
-                                </div>
-                                <div className="form-check">
-                                    <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" onChange={ProcAndPlay} />
-                                    <label className="form-check-label" htmlFor="flexRadioDefault2">
-                                        HUSH
-                                    </label>
-                                </div>
-                            </div>
-
-                            {/* P2 controls for arpeggio*/}
-                            <div className="mb-3">
-                                <label className="form-label">Arpeggiator (p2)</label>
-                                <div className="form-check">
-                                    <input className="form-check-input" type="radio" name="p2RadioDefault" id="p2RadioDefault1" onChange={ProcAndPlay} defaultChecked />
-                                    <label className="form-check-label" htmlFor="p2RadioDefault1">
-                                        ON
-                                    </label>
-                                </div>
-                                <div className="form-check">
-                                    <input className="form-check-input" type="radio" name="p2RadioDefault" id="p2RadioDefault2" onChange={ProcAndPlay} />
-                                    <label className="form-check-label" htmlFor="p2RadioDefault2">
-                                        HUSH
-                                    </label>
-                                </div>
-                            </div>
-
-                            {/* drum toggle (checkbox) */}
-                            <div className="mb-3">
-                                <div className="form-check">
-                                    <input
-                                        className="form-check-input"
-                                        type="checkbox"
-                                        id="drumsCheck"
-                                        defaultChecked
-                                        onChange={ProcAndPlay}
-                                    />
-                                    <label className="form-check-label" htmlFor="drumsCheck">
-                                        Enable Drums
-                                    </label>
-                                </div>
-                            </div>
-
-                            {/* drum patterns (dropdown 1-3) */}
-                            <div className="mb-3">
-                                <label htmlFor="patternSelect" className="form-label">Drum Pattern</label>
-                                <select
-                                    className="form-select"
-                                    id="patternSelect"
-                                    defaultValue="0"
-                                    onChange={ProcAndPlay}
-                                >
-                                    <option value="0">Pattern 1 (Sparse)</option>
-                                    <option value="1">Pattern 2 (Medium)</option>
-                                    <option value="2">Pattern 3 (Complex)</option>
-                                </select>
-                            </div>
-
-                            {/* different basslines */}
-                            <div className="mb-3">
-                                <label htmlFor="basslineSelect" className="form-label">Bassline Style</label>
-                                <select
-                                    className="form-select"
-                                    id="basslineSelect"
-                                    defaultValue="0"
-                                    onChange={ProcAndPlay}
-                                >
-                                    <option value="0">Bassline A</option>
-                                    <option value="1">Bassline B</option>
-                                </select>
-                            </div>
-
-                            {/* reverb slider */}
-                            <div className="mb-3">
-                                <label htmlFor="reverbSlider" className="form-label">
-                                    Reverb: {reverbValue.toFixed(2)}
-                                </label>
-                                <input
-                                    type="range"
-                                    className="form-range"
-                                    id="reverbSlider"
-                                    min="0"
-                                    max="1"
-                                    step="0.01"
-                                    defaultValue="0.6"
-                                    onChange={(x) => {
-                                        setReverbValue(Number(x.target.value));
-                                        ProcAndPlay();
-                                    }}
-                                />
-                            </div> 
-                        </div>
+                        <div className="col-md-8"></div>
+                        <Controls ProcAndPlay={ProcAndPlay} />
                     </div>
                 </div>
                 <canvas id="roll"></canvas>

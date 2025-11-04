@@ -77,7 +77,7 @@ stack(
   s("{~ ~ rim ~ cp ~ rim cp ~!2 rim ~ cp ~ < rim ~ >!2}%8 *2")
   .bank("[KorgDDM110, OberheimDmx]").speed(1.2)
   .postgain(.25),
-)
+).gain(<drums_Toggle>)
 
 drums2: 
 stack(
@@ -94,7 +94,8 @@ stack(
   .hpf(1000)
   .speed(0.5)
   .rarely(jux(rev)),
-)
+).gain(<drums_Toggle>)
+
 //Remixed and reproduced from Algorave Dave's code found here: https://www.youtube.com/watch?v=ZCcpWzhekEY
 // all(x => x.gain(mouseX.range(0,1)))
 // all(x => x.log())

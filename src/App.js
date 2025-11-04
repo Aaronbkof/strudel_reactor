@@ -31,7 +31,7 @@ export function SetupButtons() {
 }
 
 export function ProcAndPlay() {
-    if (globalEditor != null && globalEditor.repl.state.started == true) {
+    if (globalEditor != null && globalEditor.repl.state.started === true) {
         console.log(globalEditor)
         Proc()
         globalEditor.evaluate();
@@ -40,23 +40,24 @@ export function ProcAndPlay() {
 
 export function Proc() {
     let proc_text = document.getElementById('proc').value
-    let proc_text_replaced = proc_text.replaceAll('<p1_Radio>', ProcessText('p1'));
+    let proc_text_replaced = proc_text.replaceAll('<p1_Radio>', soundToggle('p1'));
     // handle for p2 controls
-    proc_text_replaced = proc_text_replaced.replaceAll('<p2_Radio>', ProcessText('p2'));
+    proc_text_replaced = proc_text_replaced.replaceAll('<p2_Radio>', soundToggle('p2'));
+    proc_text_replaced = proc_text_replaced.replaceAll('<drums_Toggle>', document.getElementById('drumsCheck').checked ? '1' : '0');
     globalEditor.setCode(proc_text_replaced)
 }
 
-export function ProcessText(paramName) {
+export function soundToggle(control) {
     // when starting the webapp the controls will default to on and not muted
     // so gain = 1
     let replace = "1"
 
-    if (paramName === 'p1') {
+    if (control === 'p1') {
         if (document.getElementById('flexRadioDefault2').checked) {
             // if toggled mute p1 (baseline)
             replace = "0"
         }
-    } else if (paramName === 'p2') {
+    } else if (control === 'p2') {
         if (document.getElementById('p2RadioDefault2').checked) {
             // if toggled mute p2 (arpeggio)
             replace = "0"
@@ -132,34 +133,56 @@ export default function StrudelDemo() {
                             <div id="output" />
                         </div>
                         <div className="col-md-4">
-                            {/* P1 controls for baseline*/}
-                            <div className="form-check">
-                                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" onChange={ProcAndPlay} defaultChecked />
-                                <label className="form-check-label" htmlFor="flexRadioDefault1">
-                                    p1: ON
-                                </label>
-                            </div>
-                            <div className="form-check">
-                                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" onChange={ProcAndPlay} />
-                                <label className="form-check-label" htmlFor="flexRadioDefault2">
-                                    p1: HUSH
-                                </label>
+                            <h5>Controls</h5>
+
+                            {/* P1 controls for baseline */}
+                            <div className="mb-3">
+                                <label className="form-label">Bassline (p1)</label>
+                                <div className="form-check">
+                                    <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" onChange={ProcAndPlay} defaultChecked />
+                                    <label className="form-check-label" htmlFor="flexRadioDefault1">
+                                        ON
+                                    </label>
+                                </div>
+                                <div className="form-check">
+                                    <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" onChange={ProcAndPlay} />
+                                    <label className="form-check-label" htmlFor="flexRadioDefault2">
+                                        HUSH
+                                    </label>
+                                </div>
                             </div>
 
-                            <hr />
-
-                            {/* P2 controls for arpeggio */}
-                            <div className="form-check">
-                                <input className="form-check-input" type="radio" name="p2RadioDefault" id="p2RadioDefault1" onChange={ProcAndPlay} defaultChecked />
-                                <label className="form-check-label" htmlFor="p2RadioDefault1">
-                                    p2: ON
-                                </label>
+                            {/* P2 controls for arpeggio*/}
+                            <div className="mb-3">
+                                <label className="form-label">Arpeggiator (p2)</label>
+                                <div className="form-check">
+                                    <input className="form-check-input" type="radio" name="p2RadioDefault" id="p2RadioDefault1" onChange={ProcAndPlay} defaultChecked />
+                                    <label className="form-check-label" htmlFor="p2RadioDefault1">
+                                        ON
+                                    </label>
+                                </div>
+                                <div className="form-check">
+                                    <input className="form-check-input" type="radio" name="p2RadioDefault" id="p2RadioDefault2" onChange={ProcAndPlay} />
+                                    <label className="form-check-label" htmlFor="p2RadioDefault2">
+                                        HUSH
+                                    </label>
+                                </div>
                             </div>
-                            <div className="form-check">
-                                <input className="form-check-input" type="radio" name="p2RadioDefault" id="p2RadioDefault2" onChange={ProcAndPlay} />
-                                <label className="form-check-label" htmlFor="p2RadioDefault2">
-                                    p2: HUSH
-                                </label>
+
+                            {/* drum toggle (checkbox) */}
+                            <div className="mb-3">
+                                <div className="form-check">
+                                    <input
+                                        className="form-check-input"
+                                        type="checkbox"
+                                        id="drumsCheck"
+                                        defaultChecked
+                                        onChange={ProcAndPlay}
+                                    />
+                                    <label className="form-check-label" htmlFor="drumsCheck">
+                                        Enable Drums
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>

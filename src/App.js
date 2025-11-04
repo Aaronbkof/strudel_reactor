@@ -17,23 +17,18 @@ const handleD3Data = (event) => {
 };
 
 export function SetupButtons() {
-
     document.getElementById('play').addEventListener('click', () => globalEditor.evaluate());
     document.getElementById('stop').addEventListener('click', () => globalEditor.stop());
     document.getElementById('process').addEventListener('click', () => {
         Proc()
-    }
-    )
+    })
     document.getElementById('process_play').addEventListener('click', () => {
         if (globalEditor != null) {
             Proc()
             globalEditor.evaluate()
         }
-    }
-    )
+    })
 }
-
-
 
 export function ProcAndPlay() {
     if (globalEditor != null && globalEditor.repl.state.started == true) {
@@ -44,35 +39,42 @@ export function ProcAndPlay() {
 }
 
 export function Proc() {
-
     let proc_text = document.getElementById('proc').value
-    let proc_text_replaced = proc_text.replaceAll('<p1_Radio>', ProcessText);
-    ProcessText(proc_text);
+    let proc_text_replaced = proc_text.replaceAll('<p1_Radio>', ProcessText('p1'));
+    // handle for p2 controls
+    proc_text_replaced = proc_text_replaced.replaceAll('<p2_Radio>', ProcessText('p2'));
     globalEditor.setCode(proc_text_replaced)
 }
 
-export function ProcessText(match, ...args) {
+export function ProcessText(paramName) {
+    // when starting the webapp the controls will default to on and not muted
+    // so gain = 1
+    let replace = "1"
 
-    let replace = ""
-    if (document.getElementById('flexRadioDefault2').checked) {
-        replace = "_"
+    if (paramName === 'p1') {
+        if (document.getElementById('flexRadioDefault2').checked) {
+            // if toggled mute p1 (baseline)
+            replace = "0"
+        }
+    } else if (paramName === 'p2') {
+        if (document.getElementById('p2RadioDefault2').checked) {
+            // if toggled mute p2 (arpeggio)
+            replace = "0"
+        }
     }
 
     return replace
 }
 
 export default function StrudelDemo() {
+    const hasRun = useRef(false);
 
-const hasRun = useRef(false);
+    useEffect(() => {
+        if (!hasRun.current) {
+            document.addEventListener("d3Data", handleD3Data);
+            console_monkey_patch();
+            hasRun.current = true;
 
-useEffect(() => {
-
-    if (!hasRun.current) {
-        document.addEventListener("d3Data", handleD3Data);
-        console_monkey_patch();
-        hasRun.current = true;
-        //Code copied from example: https://codeberg.org/uzu/strudel/src/branch/main/examples/codemirror-repl
-            //init canvas
             const canvas = document.getElementById('roll');
             canvas.width = canvas.width * 2;
             canvas.height = canvas.height * 2;
@@ -97,62 +99,73 @@ useEffect(() => {
                     await Promise.all([loadModules, registerSynthSounds(), registerSoundfonts()]);
                 },
             });
-            
-        document.getElementById('proc').value = stranger_tune
-        SetupButtons()
-        Proc()
-    }
 
-}, []);
+            document.getElementById('proc').value = stranger_tune
+            SetupButtons()
+            Proc()
+        }
+    }, []);
 
-
-return (
-    <div>
-        <h2>Strudel Demo</h2>
-        <main>
-
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
-                        <label htmlFor="exampleFormControlTextarea1" className="form-label">Text to preprocess:</label>
-                        <textarea className="form-control" rows="15" id="proc" ></textarea>
-                    </div>
-                    <div className="col-md-4">
-
-                        <nav>
-                            <button id="process" className="btn btn-outline-primary">Preprocess</button>
-                            <button id="process_play" className="btn btn-outline-primary">Proc & Play</button>
-                            <br />
-                            <button id="play" className="btn btn-outline-primary">Play</button>
-                            <button id="stop" className="btn btn-outline-primary">Stop</button>
-                        </nav>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
-                        <div id="editor" />
-                        <div id="output" />
-                    </div>
-                    <div className="col-md-4">
-                        <div className="form-check">
-                            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" onChange={ProcAndPlay} defaultChecked />
-                            <label className="form-check-label" htmlFor="flexRadioDefault1">
-                                p1: ON
-                            </label>
+    return (
+        <div>
+            <h2>Strudel Demo</h2>
+            <main>
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
+                            <label htmlFor="exampleFormControlTextarea1" className="form-label">Text to preprocess:</label>
+                            <textarea className="form-control" rows="15" id="proc" ></textarea>
                         </div>
-                        <div className="form-check">
-                            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" onChange={ProcAndPlay} />
-                            <label className="form-check-label" htmlFor="flexRadioDefault2">
-                                p1: HUSH
-                            </label>
+                        <div className="col-md-4">
+                            <nav>
+                                <button id="process" className="btn btn-outline-primary">Preprocess</button>
+                                <button id="process_play" className="btn btn-outline-primary">Proc & Play</button>
+                                <br />
+                                <button id="play" className="btn btn-outline-primary">Play</button>
+                                <button id="stop" className="btn btn-outline-primary">Stop</button>
+                            </nav>
                         </div>
                     </div>
+                    <div className="row">
+                        <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
+                            <div id="editor" />
+                            <div id="output" />
+                        </div>
+                        <div className="col-md-4">
+                            {/* P1 controls for baseline*/}
+                            <div className="form-check">
+                                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" onChange={ProcAndPlay} defaultChecked />
+                                <label className="form-check-label" htmlFor="flexRadioDefault1">
+                                    p1: ON
+                                </label>
+                            </div>
+                            <div className="form-check">
+                                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" onChange={ProcAndPlay} />
+                                <label className="form-check-label" htmlFor="flexRadioDefault2">
+                                    p1: HUSH
+                                </label>
+                            </div>
+
+                            <hr />
+
+                            {/* P2 controls for arpeggio */}
+                            <div className="form-check">
+                                <input className="form-check-input" type="radio" name="p2RadioDefault" id="p2RadioDefault1" onChange={ProcAndPlay} defaultChecked />
+                                <label className="form-check-label" htmlFor="p2RadioDefault1">
+                                    p2: ON
+                                </label>
+                            </div>
+                            <div className="form-check">
+                                <input className="form-check-input" type="radio" name="p2RadioDefault" id="p2RadioDefault2" onChange={ProcAndPlay} />
+                                <label className="form-check-label" htmlFor="p2RadioDefault2">
+                                    p2: HUSH
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <canvas id="roll"></canvas>
-        </main >
-    </div >
-);
-
-
+                <canvas id="roll"></canvas>
+            </main>
+        </div>
+    );
 }

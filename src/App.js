@@ -44,6 +44,7 @@ export function Proc() {
     // handle for p2 controls
     proc_text_replaced = proc_text_replaced.replaceAll('<p2_Radio>', soundToggle('p2'));
     proc_text_replaced = proc_text_replaced.replaceAll('<drums_Toggle>', document.getElementById('drumsCheck').checked ? '1' : '0');
+    proc_text_replaced = proc_text_replaced.replaceAll('<pattern_Idx>', document.getElementById('patternSelect').value);
     globalEditor.setCode(proc_text_replaced)
 }
 
@@ -184,6 +185,21 @@ export default function StrudelDemo() {
                                     </label>
                                 </div>
                             </div>
+
+                            {/* drum patterns (dropdown 1-3) */}
+                            <div className="mb-3">
+                                <label htmlFor="patternSelect" className="form-label">Drum Pattern</label>
+                                <select
+                                    className="form-select"
+                                    id="patternSelect"
+                                    defaultValue="0"
+                                    onChange={ProcAndPlay}
+                                >
+                                    <option value="0">Pattern 0 (Sparse)</option>
+                                    <option value="1">Pattern 1 (Medium)</option>
+                                    <option value="2">Pattern 2 (Complex)</option>
+                                </select>
+                            </div> 
                         </div>
                     </div>
                 </div>

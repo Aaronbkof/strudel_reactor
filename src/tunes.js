@@ -37,13 +37,13 @@ const arpeggiator2 = [
 
 
 const pattern = <pattern_Idx>
-const bass = 0
+const bass = <bass_Idx>
 
 bassline:
 note(pick(basslines, bass))
 .sound("supersaw")
 .postgain(2)
-.room(0.6)
+.room(<reverb_Val>)
 .lpf(700)
 .room(0.4)
 .postgain(pick(gain_patterns, pattern))
@@ -55,7 +55,7 @@ note(pick(arpeggiator1, "<0 1 2 3>/2"))
 .sound("supersaw")
 .lpf(300)
 .adsr("0:0:.5:.1")
-.room(0.6)
+.room(<reverb_Val>)
 .lpenv(3.3)
 .postgain(pick(gain_patterns, pattern))
 .gain(<p2_Radio>)

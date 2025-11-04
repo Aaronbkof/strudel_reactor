@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { StrudelMirror } from '@strudel/codemirror';
 import { evalScope } from '@strudel/core';
 import { drawPianoroll } from '@strudel/draw';
@@ -45,6 +45,8 @@ export function Proc() {
     proc_text_replaced = proc_text_replaced.replaceAll('<p2_Radio>', soundToggle('p2'));
     proc_text_replaced = proc_text_replaced.replaceAll('<drums_Toggle>', document.getElementById('drumsCheck').checked ? '1' : '0');
     proc_text_replaced = proc_text_replaced.replaceAll('<pattern_Idx>', document.getElementById('patternSelect').value);
+    proc_text_replaced = proc_text_replaced.replaceAll('<bass_Idx>', document.getElementById('basslineSelect').value); 
+    proc_text_replaced = proc_text_replaced.replaceAll('<reverb_Val>', document.getElementById('reverbSlider').value); 
     globalEditor.setCode(proc_text_replaced)
 }
 
@@ -70,6 +72,9 @@ export function soundToggle(control) {
 
 export default function StrudelDemo() {
     const hasRun = useRef(false);
+
+    //Add state for displaying reverb value
+    const [reverbValue, setReverbValue] = useState(0.6); 
 
     useEffect(() => {
         if (!hasRun.current) {
@@ -195,10 +200,44 @@ export default function StrudelDemo() {
                                     defaultValue="0"
                                     onChange={ProcAndPlay}
                                 >
-                                    <option value="0">Pattern 0 (Sparse)</option>
-                                    <option value="1">Pattern 1 (Medium)</option>
-                                    <option value="2">Pattern 2 (Complex)</option>
+                                    <option value="0">Pattern 1 (Sparse)</option>
+                                    <option value="1">Pattern 2 (Medium)</option>
+                                    <option value="2">Pattern 3 (Complex)</option>
                                 </select>
+                            </div>
+
+                            {/* different basslines */}
+                            <div className="mb-3">
+                                <label htmlFor="basslineSelect" className="form-label">Bassline Style</label>
+                                <select
+                                    className="form-select"
+                                    id="basslineSelect"
+                                    defaultValue="0"
+                                    onChange={ProcAndPlay}
+                                >
+                                    <option value="0">Bassline A</option>
+                                    <option value="1">Bassline B</option>
+                                </select>
+                            </div>
+
+                            {/* reverb slider */}
+                            <div className="mb-3">
+                                <label htmlFor="reverbSlider" className="form-label">
+                                    Reverb: {reverbValue.toFixed(2)}
+                                </label>
+                                <input
+                                    type="range"
+                                    className="form-range"
+                                    id="reverbSlider"
+                                    min="0"
+                                    max="1"
+                                    step="0.01"
+                                    defaultValue="0.6"
+                                    onChange={(x) => {
+                                        setReverbValue(Number(x.target.value));
+                                        ProcAndPlay();
+                                    }}
+                                />
                             </div> 
                         </div>
                     </div>

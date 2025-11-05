@@ -17,23 +17,44 @@ import EditorArea from './components/editorArea';
 
 let globalEditor = null;
 
-const handleD3Data = (event) => {
-    console.log(event.detail);
-};
+//const handleD3Data = (event) => {
+//    console.log(event.detail);
+//};
 
+//export function SetupButtons() {
+//    document.getElementById('play').addEventListener('click', () => globalEditor.evaluate());
+//    document.getElementById('stop').addEventListener('click', () => globalEditor.stop());
+//    document.getElementById('process').addEventListener('click', () => {
+//        Proc(globalEditor)
+//    })
+//    document.getElementById('process_play').addEventListener('click', () => {
+//        if (globalEditor != null) {
+//            Proc(globalEditor)
+//            globalEditor.evaluate()
+//        }
+//    })
+//}
+
+// more reactive
 export function SetupButtons() {
-    document.getElementById('play').addEventListener('click', () => globalEditor.evaluate());
-    document.getElementById('stop').addEventListener('click', () => globalEditor.stop());
-    document.getElementById('process').addEventListener('click', () => {
-        Proc(globalEditor)
-    })
-    document.getElementById('process_play').addEventListener('click', () => {
+    const play = document.getElementById('play');
+    const stop = document.getElementById('stop');
+    const process = document.getElementById('process');
+    const processPlay = document.getElementById('process_play');
+    // safetly return if any button is missing and not crash
+    if (!play || !stop || !process || !processPlay) return;
+
+    play.addEventListener('click', () => globalEditor.evaluate());
+    stop.addEventListener('click', () => globalEditor.stop());
+    process.addEventListener('click', () => Proc(globalEditor));
+    processPlay.addEventListener('click', () => {
         if (globalEditor != null) {
-            Proc(globalEditor)
-            globalEditor.evaluate()
+            Proc(globalEditor);
+            globalEditor.evaluate();
         }
-    })
+    });
 }
+
 
 export function ProcAndPlay() {
     if (globalEditor != null && globalEditor.repl.state.started === true) {
@@ -48,7 +69,7 @@ export default function StrudelDemo() {
 
     useEffect(() => {
         if (!hasRun.current) {
-            document.addEventListener("d3Data", handleD3Data);
+            //document.addEventListener("d3Data", handleD3Data);
             console_monkey_patch();
             hasRun.current = true;
 
@@ -86,15 +107,16 @@ export default function StrudelDemo() {
     return (
         <div>
             <h2>Strudel Demo</h2>
-            <main>
-                <div className="container-fluid">
-                    <EditorArea />
-                    <div className="row">
-                        <div className="col-md-8"></div>
+            <main className="container-fluid">
+                {/* editor and controls */}
+                <div className="row">
+                    <div className="col-md-9" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
+                        <EditorArea />
+                    </div>
+                    <div className="col-md-3" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
                         <Controls ProcAndPlay={ProcAndPlay} />
                     </div>
                 </div>
-                <canvas id="roll"></canvas>
             </main>
         </div>
     );

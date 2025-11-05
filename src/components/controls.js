@@ -6,6 +6,17 @@ export default function Controls({ ProcAndPlay }) {
         <div className="col-md-4">
             <h5>Controls</h5>
 
+            { /* playback buttons */}
+            <div className="col-md-4">
+                <nav>
+                    <button id="process" className="btn btn-outline-primary">Preprocess</button>
+                    <button id="process_play" className="btn btn-outline-primary">Proc & Play</button>
+                    <br />
+                    <button id="play" className="btn btn-outline-primary">Play</button>
+                    <button id="stop" className="btn btn-outline-primary">Stop</button>
+                </nav>
+            </div>
+
             {/* P1 controls for baseline */}
             <div className="mb-3">
                 <label className="form-label">Bassline (p1)</label>

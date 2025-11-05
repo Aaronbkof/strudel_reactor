@@ -36,14 +36,14 @@ const arpeggiator2 = [
 ]
 
 
-const pattern = <pattern_Idx>
-const bass = <bass_Idx>
+const pattern = <pattern_Selector>
+const bass = <bassline_Selector>
 
 bassline:
 note(pick(basslines, bass))
 .sound("supersaw")
 .postgain(2)
-.room(<reverb_Val>)
+.room(<reverb_Value>)
 .lpf(700)
 .room(0.4)
 .postgain(pick(gain_patterns, pattern))
@@ -55,7 +55,7 @@ note(pick(arpeggiator1, "<0 1 2 3>/2"))
 .sound("supersaw")
 .lpf(300)
 .adsr("0:0:.5:.1")
-.room(<reverb_Val>)
+.room(<reverb_Value>)
 .lpenv(3.3)
 .postgain(pick(gain_patterns, pattern))
 .gain(<p2_Radio>)
@@ -96,8 +96,8 @@ stack(
   .rarely(jux(rev)),
 ).gain(<drums_Toggle>)
 
+all(x => x.log())
 //Remixed and reproduced from Algorave Dave's code found here: https://www.youtube.com/watch?v=ZCcpWzhekEY
 // all(x => x.gain(mouseX.range(0,1)))
-// all(x => x.log())
 
 // @version 1.2`;

@@ -4,9 +4,10 @@ export function Proc(globalEditor) {
     // handle for p2 controls
     proc_text_replaced = proc_text_replaced.replaceAll('<p2_Radio>', soundToggle('p2'));
     proc_text_replaced = proc_text_replaced.replaceAll('<drums_Toggle>', document.getElementById('drumsCheck').checked ? '1' : '0');
-    proc_text_replaced = proc_text_replaced.replaceAll('<pattern_Idx>', document.getElementById('patternSelect').value);
-    proc_text_replaced = proc_text_replaced.replaceAll('<bass_Idx>', document.getElementById('basslineSelect').value);
-    proc_text_replaced = proc_text_replaced.replaceAll('<reverb_Val>', document.getElementById('reverbSlider').value);
+    // handle for pattern, bassline and reverb controls
+    proc_text_replaced = proc_text_replaced.replaceAll('<pattern_Selector>', document.getElementById('patternSelect').value);
+    proc_text_replaced = proc_text_replaced.replaceAll('<bassline_Selector>', document.getElementById('basslineSelect').value);
+    proc_text_replaced = proc_text_replaced.replaceAll('<reverb_Value>', document.getElementById('reverbSlider').value);
     globalEditor.setCode(proc_text_replaced)
 }
 

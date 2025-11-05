@@ -8,6 +8,11 @@ export function Proc(globalEditor) {
     proc_text_replaced = proc_text_replaced.replaceAll('<pattern_Selector>', document.getElementById('patternSelect').value);
     proc_text_replaced = proc_text_replaced.replaceAll('<bassline_Selector>', document.getElementById('basslineSelect').value);
     proc_text_replaced = proc_text_replaced.replaceAll('<reverb_Value>', document.getElementById('reverbSlider').value);
+    // handles for bpm and cycle values
+    proc_text_replaced = proc_text_replaced.replaceAll('<bpm_Value>', document.getElementById('bpmSlider').value);
+    proc_text_replaced = proc_text_replaced.replaceAll('<secpm_Value>', document.getElementById('secSlider').value);
+    proc_text_replaced = proc_text_replaced.replaceAll('<cycle_Value>', document.getElementById('cycleSlider').value);
+
     globalEditor.setCode(proc_text_replaced)
 }
 

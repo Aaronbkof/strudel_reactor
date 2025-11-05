@@ -1,19 +1,24 @@
 import { useState } from "react";
 export default function Controls({ ProcAndPlay }) {
+    // default values of sliders
     const [reverbValue, setReverbValue] = useState(0.6);
+    const [bpmValue, setBpmValue] = useState(140);
+    const [cycleValue, setCycleValue] = useState(4);
+    const [spmValue, setSpmValue] = useState(60);
 
     return (
-        <div className="col-md-4">
+        <div className="col-md-12">
             <h5>Controls</h5>
 
             { /* playback buttons */}
-            <div className="col-md-4">
-                <nav>
-                    <button id="process" className="btn btn-outline-primary">Preprocess</button>
-                    <button id="process_play" className="btn btn-outline-primary">Proc & Play</button>
-                    <br />
-                    <button id="play" className="btn btn-outline-primary">Play</button>
-                    <button id="stop" className="btn btn-outline-primary">Stop</button>
+            <div className="mb-3">
+                <nav className="btn-toolbar" role="toolbar">
+                    <div className="btn-group me-2" role="group" aria-label="playback controls">
+                        <button id="process" className="btn btn-outline-primary btn-sm">Preprocess</button>
+                        <button id="process_play" className="btn btn-outline-primary btn-sm">Proc & Play</button>
+                        <button id="play" className="btn btn-outline-primary btn-sm">Play</button>
+                        <button id="stop" className="btn btn-outline-primary btn-sm">Stop</button>
+                    </div>
                 </nav>
             </div>
 
@@ -111,6 +116,66 @@ export default function Controls({ ProcAndPlay }) {
                     defaultValue="0.6"
                     onChange={(x) => {
                         setReverbValue(Number(x.target.value));
+                        ProcAndPlay();
+                    }}
+                />
+            </div>
+
+            {/* BPM */}
+            <div className="mb-3">
+                <label htmlFor="bpmSlider" className="form-label">
+                    BPM: {bpmValue.toFixed(0)}
+                </label>
+                <input
+                    type="range"
+                    className="form-range"
+                    id="bpmSlider"
+                    min="60"
+                    max="200"
+                    step="1"
+                    defaultValue="140"
+                    onChange={(x) => {
+                        setBpmValue(Number(x.target.value));
+                        ProcAndPlay();
+                    }}
+                />
+            </div>
+
+            {/* tempo */}
+            <div className="mb-3">
+                <label htmlFor="cycleSlider" className="form-label">
+                    Beats per Cycle: {cycleValue.toFixed(0)}
+                </label>
+                <input
+                    type="range"
+                    className="form-range"
+                    id="cycleSlider"
+                    min="1"
+                    max="8"
+                    step="1"
+                    defaultValue="4"
+                    onChange={(x) => {
+                        setCycleValue(Number(x.target.value));
+                        ProcAndPlay();
+                    }}
+                />
+            </div>
+
+            {/* seconds per minute (SPM) */}
+            <div className="mb-3">
+                <label htmlFor="secSlider" className="form-label">
+                    Seconds per Minute: {spmValue.toFixed(0)}
+                </label>
+                <input
+                    type="range"
+                    className="form-range"
+                    id="secSlider"
+                    min="30"
+                    max="120"
+                    step="1"
+                    defaultValue="60"
+                    onChange={(x) => {
+                        setSpmValue(Number(x.target.value));
                         ProcAndPlay();
                     }}
                 />

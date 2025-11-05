@@ -105,12 +105,12 @@ export default function StrudelDemo() {
     }, []);
 
     return (
-        <div>
+        <div className="App">
             <h2>Strudel Demo</h2>
-            <main className="container-fluid">
+            <main className="container text-start">
                 {/* editor and controls */}
                 <div className="row">
-                    <div className="col-md-9" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
+                    <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
                         <EditorArea />
                     </div>
                     <div className="col-md-3" style={{ maxHeight: '50vh', overflowY: 'auto' }}>

@@ -13,11 +13,11 @@ export default function Controls({ ProcAndPlay }) {
             { /* playback buttons */}
             <div className="mb-3">
                 <nav className="btn-toolbar" role="toolbar">
-                    <div className="btn-group me-2" role="group" aria-label="playback controls">
+                    <div className="btn-group me-2" role="group">
+                        <button id="play" className="btn btn-outline-primary btn-success btn-sm">Play</button>
+                        <button id="stop" className="btn btn-outline-primary btn-danger btn-sm">Stop</button>
                         <button id="process" className="btn btn-outline-primary btn-sm">Preprocess</button>
                         <button id="process_play" className="btn btn-outline-primary btn-sm">Proc & Play</button>
-                        <button id="play" className="btn btn-outline-primary btn-sm">Play</button>
-                        <button id="stop" className="btn btn-outline-primary btn-sm">Stop</button>
                     </div>
                 </nav>
             </div>
@@ -37,6 +37,15 @@ export default function Controls({ ProcAndPlay }) {
                         HUSH
                     </label>
                 </div>
+
+                {/* different basslines */}
+                <div className="mb-3">
+                    <label htmlFor="basslineSelect" className="form-label">Bassline Style</label>
+                    <select className="form-select" id="basslineSelect" defaultValue="0" onChange={ProcAndPlay} >
+                        <option value="0">Bassline A</option>
+                        <option value="1">Bassline B</option>
+                    </select>
+                </div>
             </div>
 
             {/* P2 controls for arpeggio*/}
@@ -54,7 +63,16 @@ export default function Controls({ ProcAndPlay }) {
                         HUSH
                     </label>
                 </div>
+
+                {/* dropdown to choose arpeggiator */}
+                <div className="ms-auto">
+                    <select className="form-select form-select-sm" id="arpSelect" defaultValue="0" onChange={ProcAndPlay} style={{ width: "150px" }} >
+                        <option value="0">Arpeggio 1</option>
+                        <option value="1">Arpeggio 2</option>
+                    </select>
+                </div>
             </div>
+
 
             {/* drum toggle (checkbox) */}
             <div className="mb-3">
@@ -84,20 +102,6 @@ export default function Controls({ ProcAndPlay }) {
                     <option value="0">Pattern 1 (Sparse)</option>
                     <option value="1">Pattern 2 (Medium)</option>
                     <option value="2">Pattern 3 (Complex)</option>
-                </select>
-            </div>
-
-            {/* different basslines */}
-            <div className="mb-3">
-                <label htmlFor="basslineSelect" className="form-label">Bassline Style</label>
-                <select
-                    className="form-select"
-                    id="basslineSelect"
-                    defaultValue="0"
-                    onChange={ProcAndPlay}
-                >
-                    <option value="0">Bassline A</option>
-                    <option value="1">Bassline B</option>
                 </select>
             </div>
 

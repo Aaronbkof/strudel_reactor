@@ -38,6 +38,7 @@ const arpeggiator2 = [
 
 const pattern = <pattern_Selector>
 const bass = <bassline_Selector>
+const arpeggio = <arp_Selector>
 
 bassline:
 note(pick(basslines, bass))
@@ -51,7 +52,7 @@ note(pick(basslines, bass))
 
 
 main_arp: 
-note(pick(arpeggiator1, "<0 1 2 3>/2"))
+note(pick(pick([arpeggiator1, arpeggiator2], arpeggio), "<0 1 2 3>/2"))
 .sound("supersaw")
 .lpf(300)
 .adsr("0:0:.5:.1")

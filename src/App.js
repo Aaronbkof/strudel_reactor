@@ -11,7 +11,7 @@ import { stranger_tune } from './tunes';
 import console_monkey_patch from './console-monkey-patch';
 
 // importing app functions
-import { Proc } from './textProcessor';
+import { Proc } from './components/textProcessor';
 import Controls from './components/controls';
 import EditorArea from './components/editorArea';
 
@@ -54,7 +54,6 @@ export function SetupButtons() {
         }
     });
 }
-
 
 export function ProcAndPlay() {
     if (globalEditor != null && globalEditor.repl.state.started === true) {
@@ -106,14 +105,14 @@ export default function StrudelDemo() {
 
     return (
         <div className="App">
-            <h2>Strudel Demo</h2>
+            <h1>Strudel Demo</h1>
             <main className="container text-start">
                 {/* editor and controls */}
                 <div className="row">
-                    <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
+                    <div className="col-md-8" style={{ maxHeight: '60vh', overflowY: 'auto' }}>
                         <EditorArea />
                     </div>
-                    <div className="col-md-3" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
+                    <div className="col-md-3" style={{ maxHeight: '60vh', overflowY: 'auto' }}>
                         <Controls ProcAndPlay={ProcAndPlay} />
                     </div>
                 </div>

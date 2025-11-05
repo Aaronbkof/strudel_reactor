@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "E:\\uniworkds\\new\\webtech\\strudel_reactor\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|e:\\uniworkds\\new\\webtech\\strudel_reactor\\src\\app.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\app.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|e:\\uniworkds\\new\\webtech\\strudel_reactor\\src\\components\\visualiser.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\components\\visualiser.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|e:\\uniworkds\\new\\webtech\\strudel_reactor\\src\\tunes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\tunes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|e:\\uniworkds\\new\\webtech\\strudel_reactor\\src\\app.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\app.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|e:\\uniworkds\\new\\webtech\\strudel_reactor\\src\\components\\textprocessor.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\components\\textprocessor.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|e:\\uniworkds\\new\\webtech\\strudel_reactor\\src\\components\\editorarea.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
@@ -23,12 +23,20 @@
       "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\components\\controls.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|e:\\uniworkds\\new\\webtech\\strudel_reactor\\src\\textprocessor.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\textprocessor.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|e:\\uniworkds\\new\\webtech\\strudel_reactor\\src\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|e:\\uniworkds\\new\\webtech\\strudel_reactor\\src\\tunes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\tunes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|e:\\uniworkds\\new\\webtech\\strudel_reactor\\readme_aaron.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:readme_aaron.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|e:\\uniworkds\\new\\webtech\\strudel_reactor\\readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,47 +46,68 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 6,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "editorArea.js",
-              "DocumentMoniker": "E:\\uniworkds\\new\\webtech\\strudel_reactor\\src\\components\\editorArea.js",
-              "RelativeDocumentMoniker": "src\\components\\editorArea.js",
-              "ToolTip": "E:\\uniworkds\\new\\webtech\\strudel_reactor\\src\\components\\editorArea.js",
-              "RelativeToolTip": "src\\components\\editorArea.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-11-04T05:00:46.031Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:133:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:134:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:135:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "visualiser.js",
-              "DocumentMoniker": "E:\\uniworkds\\new\\webtech\\strudel_reactor\\src\\components\\visualiser.js",
-              "RelativeDocumentMoniker": "src\\components\\visualiser.js",
-              "ToolTip": "E:\\uniworkds\\new\\webtech\\strudel_reactor\\src\\components\\visualiser.js",
-              "RelativeToolTip": "src\\components\\visualiser.js",
-              "ViewState": "AgIAAEoAAAAAAAAAAAAAwE8AAAAeAAAAAAAAAA==",
+              "Title": "App.js",
+              "DocumentMoniker": "E:\\uniworkds\\new\\webtech\\strudel_reactor\\src\\App.js",
+              "RelativeDocumentMoniker": "src\\App.js",
+              "ToolTip": "E:\\uniworkds\\new\\webtech\\strudel_reactor\\src\\App.js",
+              "RelativeToolTip": "src\\App.js",
+              "ViewState": "AgIAAIMAAAAAAAAAAAAAAA4AAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-11-04T07:02:51.901Z",
+              "WhenOpened": "2025-11-05T09:46:09.165Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "App.css",
-              "DocumentMoniker": "E:\\uniworkds\\new\\webtech\\strudel_reactor\\src\\App.css",
-              "RelativeDocumentMoniker": "src\\App.css",
-              "ToolTip": "E:\\uniworkds\\new\\webtech\\strudel_reactor\\src\\App.css",
-              "RelativeToolTip": "src\\App.css",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-11-04T05:08:04.155Z",
-              "EditorCaption": ""
+              "DocumentIndex": 7,
+              "Title": "README_Aaron.md",
+              "DocumentMoniker": "E:\\uniworkds\\new\\webtech\\strudel_reactor\\README_Aaron.md",
+              "RelativeDocumentMoniker": "README_Aaron.md",
+              "ToolTip": "E:\\uniworkds\\new\\webtech\\strudel_reactor\\README_Aaron.md",
+              "RelativeToolTip": "README_Aaron.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-11-05T09:20:14.668Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "README.md",
+              "DocumentMoniker": "E:\\uniworkds\\new\\webtech\\strudel_reactor\\README.md",
+              "RelativeDocumentMoniker": "README.md",
+              "ToolTip": "E:\\uniworkds\\new\\webtech\\strudel_reactor\\README.md",
+              "RelativeToolTip": "README.md",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-11-05T09:17:58.051Z"
             },
             {
               "$type": "Document",
@@ -88,56 +117,73 @@
               "RelativeDocumentMoniker": "src\\components\\controls.js",
               "ToolTip": "E:\\uniworkds\\new\\webtech\\strudel_reactor\\src\\components\\controls.js",
               "RelativeToolTip": "src\\components\\controls.js",
-              "ViewState": "AgIAACwAAAAAAAAAAAAAwDwAAABAAAAAAAAAAA==",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAAACcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-11-04T05:00:40.017Z",
+              "WhenOpened": "2025-11-05T08:51:44.722Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "textProcessor.js",
-              "DocumentMoniker": "E:\\uniworkds\\new\\webtech\\strudel_reactor\\src\\textProcessor.js",
-              "RelativeDocumentMoniker": "src\\textProcessor.js",
-              "ToolTip": "E:\\uniworkds\\new\\webtech\\strudel_reactor\\src\\textProcessor.js",
-              "RelativeToolTip": "src\\textProcessor.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "DocumentMoniker": "E:\\uniworkds\\new\\webtech\\strudel_reactor\\src\\components\\textProcessor.js",
+              "RelativeDocumentMoniker": "src\\components\\textProcessor.js",
+              "ToolTip": "E:\\uniworkds\\new\\webtech\\strudel_reactor\\src\\components\\textProcessor.js",
+              "RelativeToolTip": "src\\components\\textProcessor.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-11-04T04:57:35.35Z",
+              "WhenOpened": "2025-11-05T08:53:42.167Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "tunes.js",
               "DocumentMoniker": "E:\\uniworkds\\new\\webtech\\strudel_reactor\\src\\tunes.js",
               "RelativeDocumentMoniker": "src\\tunes.js",
               "ToolTip": "E:\\uniworkds\\new\\webtech\\strudel_reactor\\src\\tunes.js",
               "RelativeToolTip": "src\\tunes.js",
-              "ViewState": "AgIAAFAAAAAAAAAAAAAQwGQAAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAACkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-11-03T14:26:33.125Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "WhenOpened": "2025-11-05T08:52:11.994Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "App.js",
-              "DocumentMoniker": "E:\\uniworkds\\new\\webtech\\strudel_reactor\\src\\App.js",
-              "RelativeDocumentMoniker": "src\\App.js",
-              "ToolTip": "E:\\uniworkds\\new\\webtech\\strudel_reactor\\src\\App.js",
-              "RelativeToolTip": "src\\App.js",
-              "ViewState": "AgIAACUAAAAAAAAAAAAawDMAAAA+AAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "App.css",
+              "DocumentMoniker": "E:\\uniworkds\\new\\webtech\\strudel_reactor\\src\\App.css",
+              "RelativeDocumentMoniker": "src\\App.css",
+              "ToolTip": "E:\\uniworkds\\new\\webtech\\strudel_reactor\\src\\App.css",
+              "RelativeToolTip": "src\\App.css",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAuwCgAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-11-05T08:47:40.397Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "visualiser.js",
+              "DocumentMoniker": "E:\\uniworkds\\new\\webtech\\strudel_reactor\\src\\components\\visualiser.js",
+              "RelativeDocumentMoniker": "src\\components\\visualiser.js",
+              "ToolTip": "E:\\uniworkds\\new\\webtech\\strudel_reactor\\src\\components\\visualiser.js",
+              "RelativeToolTip": "src\\components\\visualiser.js",
+              "ViewState": "AgIAADYAAAAAAAAAAAAAAFIAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-11-03T13:26:13.027Z",
+              "WhenOpened": "2025-11-05T08:45:50.644Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "editorArea.js",
+              "DocumentMoniker": "E:\\uniworkds\\new\\webtech\\strudel_reactor\\src\\components\\editorArea.js",
+              "RelativeDocumentMoniker": "src\\components\\editorArea.js",
+              "ToolTip": "E:\\uniworkds\\new\\webtech\\strudel_reactor\\src\\components\\editorArea.js",
+              "RelativeToolTip": "src\\components\\editorArea.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-11-05T08:44:05.86Z",
               "EditorCaption": ""
             }
           ]

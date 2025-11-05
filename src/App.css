@@ -1,7 +1,9 @@
 .App {
     text-align: center;
-    background-color: darkolivegreen;
-    color: black;
+    /*    background-color: slategrey;*/
+    color: white;
+    /* will change later */
+    background-image: url(E:\uniworkds\new\webtech\strudel_reactor\src\assets\gabriele-garanzelli-PzO_CitnJdI-unsplash.jpg);
     min-height: 100vh;
 }
 

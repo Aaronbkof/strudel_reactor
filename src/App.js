@@ -14,6 +14,7 @@ import console_monkey_patch from './console-monkey-patch';
 import { Proc } from './components/textProcessor';
 import Controls from './components/controls';
 import EditorArea from './components/editorArea';
+import Visualiser from './components/visualiser';
 
 let globalEditor = null;
 
@@ -35,18 +36,23 @@ let globalEditor = null;
 //    })
 //}
 
-// more reactive
+// more reactive amd safe version of SetupButtons
 export function SetupButtons() {
     const play = document.getElementById('play');
     const stop = document.getElementById('stop');
     const process = document.getElementById('process');
     const processPlay = document.getElementById('process_play');
-    // safetly return if any button is missing and not crash
+
+    // safetly return if any button is missing and not crash the webapp due to DOM issues
+    // will always check this first before adding event listeners
     if (!play || !stop || !process || !processPlay) return;
 
-    play.addEventListener('click', () => globalEditor.evaluate());
-    stop.addEventListener('click', () => globalEditor.stop());
-    process.addEventListener('click', () => Proc(globalEditor));
+    // will only go here if all buttons are present
+    play.addEventListener('click', () => globalEditor.evaluate()); // parse and play
+    stop.addEventListener('click', () => globalEditor.stop()); // stop parsing and playing
+    process.addEventListener('click', () => Proc(globalEditor)); // just parse
+
+    // combined parse and then play
     processPlay.addEventListener('click', () => {
         if (globalEditor != null) {
             Proc(globalEditor);
@@ -105,7 +111,7 @@ export default function StrudelDemo() {
 
     return (
         <div className="App">
-            <h1>Strudel Demo</h1>
+            <h1>Strudel REPL Demo</h1>
             <main className="container text-start">
                 {/* editor and controls */}
                 <div className="row">
@@ -116,6 +122,15 @@ export default function StrudelDemo() {
                         <Controls ProcAndPlay={ProcAndPlay} />
                     </div>
                 </div>
+
+                {/* visualiser */}
+                <div className="row mt-3">
+                    <div className="col-8">
+                        <Visualiser />
+                    </div>
+                </div>
+
+                <canvas id="roll" style={{ display: 'none' }}></canvas>
             </main>
         </div>
     );

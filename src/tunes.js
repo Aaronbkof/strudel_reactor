@@ -97,7 +97,9 @@ stack(
   .rarely(jux(rev)),
 ).gain(<drums_Toggle>)
 
+// tunes logs all the data and this is the output of that audio into the console
 all(x => x.log())
+
 //Remixed and reproduced from Algorave Dave's code found here: https://www.youtube.com/watch?v=ZCcpWzhekEY
 // all(x => x.gain(mouseX.range(0,1)))
 

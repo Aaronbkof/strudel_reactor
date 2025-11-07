@@ -26,14 +26,14 @@ export default function Controls({ ProcAndPlay }) {
             <div className="mb-3">
                 <label className="form-label">Bassline (p1)</label>
                 <div className="form-check">
-                    <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" onChange={ProcAndPlay} defaultChecked />
-                    <label className="form-check-label" htmlFor="flexRadioDefault1">
+                    <input className="form-check-input" type="radio" name="p1RadioDefault" id="p1RadioDefault1" onChange={ProcAndPlay} defaultChecked />
+                    <label className="form-check-label" htmlFor="p1RadioDefault1">
                         ON
                     </label>
                 </div>
                 <div className="form-check">
-                    <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" onChange={ProcAndPlay} />
-                    <label className="form-check-label" htmlFor="flexRadioDefault2">
+                    <input className="form-check-input" type="radio" name="p1RadioDefault" id="p1RadioDefault2" onChange={ProcAndPlay} />
+                    <label className="form-check-label" htmlFor="p1RadioDefault2">
                         HUSH
                     </label>
                 </div>
@@ -77,13 +77,7 @@ export default function Controls({ ProcAndPlay }) {
             {/* drum toggle (checkbox) */}
             <div className="mb-3">
                 <div className="form-check">
-                    <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="drumsCheck"
-                        defaultChecked
-                        onChange={ProcAndPlay}
-                    />
+                    <input className="form-check-input" type="checkbox" id="drumsCheck" defaultChecked onChange={ProcAndPlay} />
                     <label className="form-check-label" htmlFor="drumsCheck">
                         Enable Drums
                     </label>
@@ -93,15 +87,10 @@ export default function Controls({ ProcAndPlay }) {
             {/* drum patterns (dropdown 1-3) */}
             <div className="mb-3">
                 <label htmlFor="patternSelect" className="form-label">Drum Pattern</label>
-                <select
-                    className="form-select"
-                    id="patternSelect"
-                    defaultValue="0"
-                    onChange={ProcAndPlay}
-                >
-                    <option value="0">Pattern 1 (Sparse)</option>
-                    <option value="1">Pattern 2 (Medium)</option>
-                    <option value="2">Pattern 3 (Complex)</option>
+                <select className="form-select" id="patternSelect" defaultValue="0" onChange={ProcAndPlay} >
+                    <option value="0">Pattern 1 (sparse)</option>
+                    <option value="1">Pattern 2 (medium)</option>
+                    <option value="2">Pattern 3 (complex)</option>
                 </select>
             </div>
 
@@ -110,14 +99,7 @@ export default function Controls({ ProcAndPlay }) {
                 <label htmlFor="reverbSlider" className="form-label">
                     Reverb: {reverbValue.toFixed(2)}
                 </label>
-                <input
-                    type="range"
-                    className="form-range"
-                    id="reverbSlider"
-                    min="0"
-                    max="1"
-                    step="0.01"
-                    defaultValue="0.6"
+                <input type="range" className="form-range" id="reverbSlider" min="0" max="1" step="0.01" defaultValue="0.6"
                     onChange={(x) => {
                         setReverbValue(Number(x.target.value));
                         ProcAndPlay();
@@ -130,14 +112,7 @@ export default function Controls({ ProcAndPlay }) {
                 <label htmlFor="bpmSlider" className="form-label">
                     BPM: {bpmValue.toFixed(0)}
                 </label>
-                <input
-                    type="range"
-                    className="form-range"
-                    id="bpmSlider"
-                    min="60"
-                    max="200"
-                    step="1"
-                    defaultValue="140"
+                <input type="range" className="form-range" id="bpmSlider" min="60" max="200" step="1" defaultValue="140"
                     onChange={(x) => {
                         setBpmValue(Number(x.target.value));
                         ProcAndPlay();
@@ -150,14 +125,7 @@ export default function Controls({ ProcAndPlay }) {
                 <label htmlFor="cycleSlider" className="form-label">
                     Beats per Cycle: {cycleValue.toFixed(0)}
                 </label>
-                <input
-                    type="range"
-                    className="form-range"
-                    id="cycleSlider"
-                    min="1"
-                    max="8"
-                    step="1"
-                    defaultValue="4"
+                <input type="range" className="form-range" id="cycleSlider" min="1" max="8" step="1" defaultValue="4"
                     onChange={(x) => {
                         setCycleValue(Number(x.target.value));
                         ProcAndPlay();
@@ -170,14 +138,7 @@ export default function Controls({ ProcAndPlay }) {
                 <label htmlFor="secSlider" className="form-label">
                     Seconds per Minute: {spmValue.toFixed(0)}
                 </label>
-                <input
-                    type="range"
-                    className="form-range"
-                    id="secSlider"
-                    min="30"
-                    max="120"
-                    step="1"
-                    defaultValue="60"
+                <input type="range" className="form-range" id="secSlider" min="30" max="120" step="1" defaultValue="60"
                     onChange={(x) => {
                         setSpmValue(Number(x.target.value));
                         ProcAndPlay();

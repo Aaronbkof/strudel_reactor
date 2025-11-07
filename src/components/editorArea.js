@@ -3,7 +3,7 @@ import { useState } from "react";
 export default function EditorArea() {
 
     // using state reactively to toggle preprocess/demo view
-    const [showProc, setShowProc] = useState(true);
+    const [showProc, setShowProc] = useState(false);
 
     return (
         <div>
@@ -12,7 +12,7 @@ export default function EditorArea() {
                 className="btn btn-secondary btn-sm mb-2"
                 onClick={() => setShowProc(!showProc)}
             >
-                {showProc ? "Switch to Editor View" : "Switch to Preprocess View"}
+                {showProc ? "Switch to Preprocess View" : "Switch to Editor View"}
             </button>
 
             {/* text processor window size */}

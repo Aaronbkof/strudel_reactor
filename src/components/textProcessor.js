@@ -26,7 +26,7 @@ export function soundToggle(control) {
     let replace = "1"
 
     if (control === 'p1') {
-        if (document.getElementById('flexRadioDefault2').checked) {
+        if (document.getElementById('p1RadioDefault2').checked) {
             // if toggled mute p1 (baseline)
             replace = "0"
         }

@@ -4,7 +4,7 @@ import * as d3 from "d3";
 export default function Visualiser() {
     const [values, setValues] = useState([]);
     const maxItems = 50;
-    const maxValue = 500;
+    const maxGainValue = 8 // Y-axis goes from 0 to 10
 
     // to listen for audio events broadcasted from console monkey patch
     // cleaned logs stored in the (logArray)
@@ -17,7 +17,7 @@ export default function Visualiser() {
                 const match = recent.match(/gain:([\d.]+)/);
                 let val;
                 if (match) {
-                    val = parseFloat(match[1]) * maxValue;
+                    val = parseFloat(match[1]);
                 } else {
                     val = 0;
                 }
@@ -62,20 +62,20 @@ export default function Visualiser() {
 
         const width = svg.node().getBoundingClientRect().width - 40;
         const height = 250;
-        const margin = { top: 150, right: 30, bottom: 20, left: 60 };
+        const margin = { top: 20, right: 30, bottom: 40, left: 60 };
 
         const xScale = d3.scaleLinear()
             .domain([0, maxItems - 1])
             .range([margin.left, width - margin.right]);
 
         const yScale = d3.scaleLinear()
-            .domain([0, maxValue])
+            .domain([0, maxGainValue])
             .range([height - margin.bottom, margin.top]);
 
         const line = d3.line()
             .x((d, i) => xScale(i))
             .y(d => yScale(d))
-            .curve(d3.curveBasis);
+            .curve(d3.curveLinear);
 
         // add X axis
         svg.append("g")
@@ -88,10 +88,31 @@ export default function Visualiser() {
         // add Y axis
         svg.append("g")
             .attr("transform", `translate(${margin.left},0)`)
-            .call(d3.axisLeft(yScale).ticks(5))
+            .call(d3.axisLeft(yScale).ticks(10).tickFormat(d => d.toFixed(1)))
             .call(g => g.selectAll("text").style("fill", "#aaa"))
             .call(g => g.selectAll("line").style("stroke", "#444"))
             .call(g => g.select(".domain").style("stroke", "#555"));
+
+        // add Y axis label
+        svg.append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", margin.left - 45)
+            .attr("x", -(height / 2))
+            .attr("text-anchor", "middle")
+            .style("fill", "#aaa")
+            .style("font-size", "14px")
+            .style("font-weight", "bold")
+            .text("Gain Level");
+        
+        // add X axis label
+        svg.append("text")
+            .attr("x", width / 2)
+            .attr("y", height - 5)
+            .attr("text-anchor", "middle")
+            .style("fill", "#aaa")
+            .style("font-size", "14px")
+            .style("font-weight", "bold")
+            .text("Time (samples)");
 
         // draw the line in realtime
         svg.append("path")

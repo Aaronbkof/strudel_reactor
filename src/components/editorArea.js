@@ -12,7 +12,7 @@ export default function EditorArea() {
                 style={{
                     position: 'absolute',
                     top: '8px',
-                    right: '8px',  // Changed from 'left' to 'right'
+                    right: '8px',
                     zIndex: 10,
                     borderColor: '#00ff99',
                     color: '#00ff99',
@@ -22,9 +22,18 @@ export default function EditorArea() {
                 {showProc ? "👁 Switch to Editor View" : "📝 Switch to Preprocess View"}
             </button>
 
-            {/* text processor window size */}
+            {/* text processor window */}
             <div style={{ display: showProc ? "block" : "none" }}>
-                <textarea className="form-control" rows="30" id="proc"></textarea>
+                <textarea
+                    className="form-control"
+                    rows="30"
+                    id="proc"
+                    style={{
+                        // remove the scroll and let the parent scroll control both views
+                        overflow: 'hidden',
+                        resize: 'none'
+                    }}
+                ></textarea>
             </div>
 
             <div style={{ display: showProc ? "none" : "block" }}>

@@ -112,21 +112,23 @@ export default function StrudelDemo() {
     return (
         <div className="App">
             <h1>Strudel REPL Demo</h1>
-            <main className="container text-start">
-                {/* editor and controls */}
-                <div className="row">
-                    <div className="col-md-8" style={{ maxHeight: '60vh', overflowY: 'auto' }}>
-                        <EditorArea />
-                    </div>
-                    <div className="col-md-3" style={{ maxHeight: '60vh', overflowY: 'auto' }}>
-                        <Controls ProcAndPlay={ProcAndPlay} />
-                    </div>
-                </div>
 
-                {/* visualiser */}
-                <div className="row mt-3">
-                    <div className="col-8">
+            <main className="container-fluid text-start px-4">
+                <div className="row">
+                    {/* Left column: Editor + Visualiser */}
+                    <div className="col-md-8">
+                        {/* Editor */}
+                        <div style={{ maxHeight: '60vh', overflowY: 'auto', marginBottom: '1rem' }}>
+                            <EditorArea />
+                        </div>
+
+                        {/* Visualiser directly below editor */}
                         <Visualiser />
+                    </div>
+
+                    {/* Right column: Controls (full height) */}
+                    <div className="col-md-4">
+                        <Controls ProcAndPlay={ProcAndPlay} />
                     </div>
                 </div>
 

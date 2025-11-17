@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {downloadSettings, uploadSettings} from "./jsonHandling";
 export default function Controls({ ProcAndPlay }) {
     // default values of sliders
     const [reverbValue, setReverbValue] = useState(0.6);
@@ -145,6 +146,32 @@ export default function Controls({ ProcAndPlay }) {
                     }}
                 />
             </div>
+
+            {/* json handling import/export */}
+            <div className="mb-3 border rounded p-2" style={{ backgroundColor: 'grey' }}>
+                <label className="form-label">Settings</label>
+                <div>
+                    <button
+                        className="btn btn-success btn-sm"
+                        onClick={downloadSettings}
+                    >
+                        Export as JSON
+                    </button>
+
+                    <label htmlFor="settingsUpload" className="btn btn-primary btn-sm mb-0">
+                        Import Settings
+                    </label>
+                    <input
+                        // this essentially automatically loads the settings provided by the imported JSON
+                        // then will automatically invoke the proc and play button
+                        type="file"
+                        id="settingsUpload"
+                        accept=".json"
+                        style={{ display: 'none' }}
+                        onChange={(e) => uploadSettings(e, ProcAndPlay)} />
+                </div>
+            </div>
+            
         </div>
     );
 }

@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "dgSpecHash": "iKqPHkiHFo8=",
+  "success": false,
+  "projectFilePath": "/Users/aaron/Desktop/Studel Reactor/ReactAssignment.esproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1012",
+      "level": "Error",
+      "message": "Platform version is not present for one or more target frameworks, even though they have specified a platform: net6.0-none",
+      "projectPath": "/Users/aaron/Desktop/Studel Reactor/ReactAssignment.esproj",
+      "filePath": "/Users/aaron/Desktop/Studel Reactor/ReactAssignment.esproj",
+      "targetGraphs": []
+    }
+  ]
+}

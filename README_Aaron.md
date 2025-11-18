@@ -99,7 +99,7 @@ Template-based code generation system that:
 - the visualiser is also visibly jittery, with added smoothing it will impact peak representation
 
 ## Demo Video
-[Link to demonstration video will be added here]
+- the video is located in the root folder named `Strudel_REPL_Demo_Aaron.mp4`
 
 ## Music Attribution
 Original composition remixed and adapted from:

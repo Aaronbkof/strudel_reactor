@@ -7,20 +7,42 @@ export default function Controls({ ProcAndPlay }) {
     const [cycleValue, setCycleValue] = useState(4);
     const [spmValue, setSpmValue] = useState(60);
 
+    const resetSliders = () => {
+        // reset slider DOM values
+        document.getElementById('reverbSlider').value = 0.6;
+        document.getElementById('bpmSlider').value = 140;
+        document.getElementById('cycleSlider').value = 4;
+        document.getElementById('secSlider').value = 60;
+
+        // reset React state for display
+        setReverbValue(0.6);
+        setBpmValue(140);
+        setCycleValue(4);
+        setSpmValue(60);
+
+        // trigger preprocessing and playback update
+        ProcAndPlay();
+    };
+
     return (
         <div className="col-md-12">
-            <h5>Controls</h5>
+            { /* playback buttons and reset */}
+            <div className="mb-3 border rounded p-3" style={{ backgroundColor: 'rgba(0, 0, 0, 0.3)', borderColor: 'rgba(0, 255, 153, 0.3)' }}>
+                <label className="form-label fw-bold mb-3 d-block">
+                    Playback Controls
+                </label>
 
-            { /* playback buttons */}
-            <div className="mb-3">
-                <nav className="btn-toolbar" role="toolbar">
-                    <div className="btn-group me-2" role="group">
-                        <button id="play" className="btn btn-outline-primary btn-success btn-sm">Play</button>
-                        <button id="stop" className="btn btn-outline-primary btn-danger btn-sm">Stop</button>
-                        <button id="process" className="btn btn-outline-primary btn-sm">Preprocess</button>
-                        <button id="process_play" className="btn btn-outline-primary btn-sm">Proc & Play</button>
-                    </div>
-                </nav>
+                {/* Playback buttons in a row */}
+                <div className="d-flex gap-2 mb-2">
+                    <button id="play" className="btn btn-success btn-sm flex-fill"> ▶️ Play </button>
+                    <button id="stop" className="btn btn-danger btn-sm flex-fill"> ⏹️ Stop </button>
+                    <button id="process" className="btn btn-primary btn-sm flex-fill"> ⚙️ Preprocess </button>
+                    <button id="process_play" className="btn btn-info btn-sm flex-fill"> ▶️⚙️ Proc & Play </button>
+                </div>
+
+                {/* reset to default button */}
+                <button
+                    className="btn btn-warning btn-sm w-100" onClick={resetSliders}> 🔄 Reset Sliders </button>
             </div>
 
             {/* P1 controls for baseline */}

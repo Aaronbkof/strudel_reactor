@@ -3,6 +3,37 @@
 ## Overview
 This is a React and JavaScript based application that provides both a backend preprocessor and a front end intuitive control interface for the Strudel.cc library, a browser-based live music coding platform. The application builds upong Strudel's existing capabilities by providing an intuitive UI for real-time music editing.
 
+## Project Structure
+```
+src/
+├── App.js                      # Main application component
+├── components/
+│   ├── controls.js             # UI controls for music parameters
+│   ├── editorArea.js           # Code editor display toggle
+│   ├── visualiser.js           # D3 audio visualization
+│   ├── textProcessor.js        # Template preprocessing logic
+│   └── settingsManager.js      # JSON save/load functionality
+├── tunes.js                    # Music composition template
+└── console-monkey-patch.js     # Audio data interception
+```
+
+## Important: Branch Information
+
+**For marking/assessment purposes, please use the `aaron_dev_final` branch for running the application.**
+but view both `aaron_dev` and `aaron_dev_final` for complete git history.
+
+This branch contains a clean version of all project features without historical build artifacts that may cause checkout issues on Windows.
+
+Note: Again, branch: `aaron_dev` contains a substantial amount of git history covering most of the developemental phase of the project however contains Windows-incompatible paths from wrongly commited build artifacts. As such please view both `aaron_dev` and `aaron_dev_final` for complete history but only run the application on `aaron_dev_final`.
+
+## Setup
+1. Clone repository
+2. cd into project directory
+3. switch to branch `aaron_dev_final`
+4. run `npm install`
+5. run `npm start`
+6. navigate to `http://localhost:3000` or other port depending on your port configurations and availability.
+
 ## Control and Functionalities
 
 ### Playback Controls
@@ -77,11 +108,30 @@ Original composition remixed and adapted from:
 
 ## AI Usage
 [Document any AI tools used and their specific prompts/outputs here]
-Example:
+
+Use 1:
 - Tool: ChatGPT (OpenAI)
 - Purpose: Code refactoring
 - Input: "could you help me to refactor this section to include ternaries for a more functional programming approach?"
 - Output: provided an output with examples of how to refactor the editorArea.js with turnaries to make the code more easily readible and succinct.
+
+Use 2:
+- Tool: ChatGPT (OpenAI)
+- purpose: README project structure diagram
+- Input: "could you help me to create a project structure diagram for my README.md based on my src folder contents?" (sends paint png detailing the diagram i want to show)
+- Output: provided the project structure diagram in markdown format as shown below.
+
+Use 3:
+- Tool: ChatGPT (OpenAI)
+- Purpose: documentation grammar check and flow
+- Input: "could you help me to proofread and improve the flow of my README.md documentation for my project?
+- Output: provided various suggestions and improvements to the overall flow and grammatical structure of the README.md documentation.
+
+Use 4:
+- Tool: ChatGPT (OpenAI)
+- Purpose: D3 visualiser code generation (axis labels and data output parsing)
+- Input: "could you help me add axis to my visualiser? with x being the samples and y being the gain?"
+- Output: provided code snippets and suggestions on how to implement axis labels and data output parsing for the D3 visualiser component.
 
 ## Technologies Used
 - React 18
@@ -89,25 +139,3 @@ Example:
 - D3.js for visualization
 - Bootstrap 5 for UI components
 - `Visual Studio` and `jetBrains Rider` for code editing
-
-## Setup
-1. Clone repository
-2. Run `npm install`
-3. Run `npm start`
-4. Navigate to `http://localhost:3000` or other port depending on your port configurations and availability.
-
-## Project Structure
-```
-src/
-├── App.js                      # Main application component
-├── components/
-│   ├── controls.js             # UI controls for music parameters
-│   ├── editorArea.js           # Code editor display toggle
-│   ├── visualiser.js           # D3 audio visualization
-│   ├── textProcessor.js        # Template preprocessing logic
-│   └── settingsManager.js      # JSON save/load functionality
-├── tunes.js                    # Music composition template
-└── console-monkey-patch.js     # Audio data interception
-```
-
-## Bonus Features

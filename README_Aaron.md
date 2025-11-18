@@ -107,7 +107,6 @@ Original composition obtained from Algorave Dave (DJ Dave):
 - Modified with additional patterns, controls, and preprocessing system
 
 ## AI Usage
-[Document any AI tools used and their specific prompts/outputs here]
 
 Use 1:
 - Tool: ChatGPT (OpenAI)

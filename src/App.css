@@ -1,5 +1,10 @@
 .App {
-  text-align: center;
+    text-align: center;
+    /*    background-color: slategrey;*/
+    color: white;
+    /* will change later */
+    background-image: url(assets/mohammad-alizade-XgeZu2jBaVI-unsplash.jpg);
+    min-height: 100vh;
 }
 
 .App-logo {
@@ -35,4 +40,31 @@
   to {
     transform: rotate(360deg);
   }
+}
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Sticky toggle button */
+.editor-toggle-wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(26, 26, 46, 0.95);
+    padding: 0.5rem 0;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(0, 255, 153, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.editor-toggle-btn {
+    border-color: #00ff99 !important;
+    color: #00ff99 !important;
+    transition: all 0.3s ease;
+}
+
+.editor-toggle-btn:hover {
+    background-color: rgba(0, 255, 153, 0.1) !important;
+    transform: translateY(-1px);
 }

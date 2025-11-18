@@ -8,71 +8,76 @@ import { transpiler } from '@strudel/transpiler';
 import { getAudioContext, webaudioOutput, registerSynthSounds } from '@strudel/webaudio';
 import { registerSoundfonts } from '@strudel/soundfonts';
 import { stranger_tune } from './tunes';
-import console_monkey_patch, { getD3Data } from './console-monkey-patch';
+import console_monkey_patch from './console-monkey-patch';
+
+// importing app functions
+import { Proc } from './components/textProcessor';
+import Controls from './components/controls';
+import EditorArea from './components/editorArea';
+import Visualiser from './components/visualiser';
 
 let globalEditor = null;
 
-const handleD3Data = (event) => {
-    console.log(event.detail);
-};
+//const handleD3Data = (event) => {
+//    console.log(event.detail);
+//};
 
+//export function SetupButtons() {
+//    document.getElementById('play').addEventListener('click', () => globalEditor.evaluate());
+//    document.getElementById('stop').addEventListener('click', () => globalEditor.stop());
+//    document.getElementById('process').addEventListener('click', () => {
+//        Proc(globalEditor)
+//    })
+//    document.getElementById('process_play').addEventListener('click', () => {
+//        if (globalEditor != null) {
+//            Proc(globalEditor)
+//            globalEditor.evaluate()
+//        }
+//    })
+//}
+
+// more reactive amd safe version of SetupButtons
 export function SetupButtons() {
+    const play = document.getElementById('play');
+    const stop = document.getElementById('stop');
+    const process = document.getElementById('process');
+    const processPlay = document.getElementById('process_play');
 
-    document.getElementById('play').addEventListener('click', () => globalEditor.evaluate());
-    document.getElementById('stop').addEventListener('click', () => globalEditor.stop());
-    document.getElementById('process').addEventListener('click', () => {
-        Proc()
-    }
-    )
-    document.getElementById('process_play').addEventListener('click', () => {
+    // safetly return if any button is missing and not crash the webapp due to DOM issues
+    // will always check this first before adding event listeners
+    if (!play || !stop || !process || !processPlay) return;
+
+    // will only go here if all buttons are present
+    play.addEventListener('click', () => globalEditor.evaluate()); // parse and play
+    stop.addEventListener('click', () => globalEditor.stop()); // stop parsing and playing
+    process.addEventListener('click', () => Proc(globalEditor)); // just parse
+
+    // combined parse and then play
+    processPlay.addEventListener('click', () => {
         if (globalEditor != null) {
-            Proc()
-            globalEditor.evaluate()
+            Proc(globalEditor);
+            globalEditor.evaluate();
         }
-    }
-    )
+    });
 }
 
-
-
 export function ProcAndPlay() {
-    if (globalEditor != null && globalEditor.repl.state.started == true) {
+    if (globalEditor != null && globalEditor.repl.state.started === true) {
         console.log(globalEditor)
-        Proc()
+        Proc(globalEditor)
         globalEditor.evaluate();
     }
 }
 
-export function Proc() {
-
-    let proc_text = document.getElementById('proc').value
-    let proc_text_replaced = proc_text.replaceAll('<p1_Radio>', ProcessText);
-    ProcessText(proc_text);
-    globalEditor.setCode(proc_text_replaced)
-}
-
-export function ProcessText(match, ...args) {
-
-    let replace = ""
-    if (document.getElementById('flexRadioDefault2').checked) {
-        replace = "_"
-    }
-
-    return replace
-}
-
 export default function StrudelDemo() {
+    const hasRun = useRef(false);
 
-const hasRun = useRef(false);
+    useEffect(() => {
+        if (!hasRun.current) {
+            //document.addEventListener("d3Data", handleD3Data);
+            console_monkey_patch();
+            hasRun.current = true;
 
-useEffect(() => {
-
-    if (!hasRun.current) {
-        document.addEventListener("d3Data", handleD3Data);
-        console_monkey_patch();
-        hasRun.current = true;
-        //Code copied from example: https://codeberg.org/uzu/strudel/src/branch/main/examples/codemirror-repl
-            //init canvas
             const canvas = document.getElementById('roll');
             canvas.width = canvas.width * 2;
             canvas.height = canvas.height * 2;
@@ -97,62 +102,38 @@ useEffect(() => {
                     await Promise.all([loadModules, registerSynthSounds(), registerSoundfonts()]);
                 },
             });
-            
-        document.getElementById('proc').value = stranger_tune
-        SetupButtons()
-        Proc()
-    }
 
-}, []);
+            document.getElementById('proc').value = stranger_tune
+            SetupButtons()
+            Proc(globalEditor)
+        }
+    }, []);
 
+    return (
+        <div className="App">
+            <h1>Strudel REPL Demo</h1>
 
-return (
-    <div>
-        <h2>Strudel Demo</h2>
-        <main>
-
-            <div className="container-fluid">
+            <main className="container-fluid text-start px-4">
                 <div className="row">
-                    <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
-                        <label htmlFor="exampleFormControlTextarea1" className="form-label">Text to preprocess:</label>
-                        <textarea className="form-control" rows="15" id="proc" ></textarea>
-                    </div>
-                    <div className="col-md-4">
+                    {/* Left column: Editor + Visualiser */}
+                    <div className="col-md-8">
+                        {/* Editor */}
+                        <div style={{ maxHeight: '60vh', overflowY: 'auto', marginBottom: '1rem' }}>
+                            <EditorArea />
+                        </div>
 
-                        <nav>
-                            <button id="process" className="btn btn-outline-primary">Preprocess</button>
-                            <button id="process_play" className="btn btn-outline-primary">Proc & Play</button>
-                            <br />
-                            <button id="play" className="btn btn-outline-primary">Play</button>
-                            <button id="stop" className="btn btn-outline-primary">Stop</button>
-                        </nav>
+                        {/* Visualiser directly below editor */}
+                        <Visualiser />
+                    </div>
+
+                    {/* Right column: Controls (full height) */}
+                    <div className="col-md-4">
+                        <Controls ProcAndPlay={ProcAndPlay} />
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
-                        <div id="editor" />
-                        <div id="output" />
-                    </div>
-                    <div className="col-md-4">
-                        <div className="form-check">
-                            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" onChange={ProcAndPlay} defaultChecked />
-                            <label className="form-check-label" htmlFor="flexRadioDefault1">
-                                p1: ON
-                            </label>
-                        </div>
-                        <div className="form-check">
-                            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" onChange={ProcAndPlay} />
-                            <label className="form-check-label" htmlFor="flexRadioDefault2">
-                                p1: HUSH
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <canvas id="roll"></canvas>
-        </main >
-    </div >
-);
 
-
+                <canvas id="roll" style={{ display: 'none' }}></canvas>
+            </main>
+        </div>
+    );
 }

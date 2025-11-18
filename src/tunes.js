@@ -1,4 +1,4 @@
-export const stranger_tune = `setcps(140/60/4)
+export const stranger_tune = `setcps(<bpm_Value>/<secpm_Value>/<cycle_Value>)
 
 samples('github:algorave-dave/samples')
 samples('https://raw.githubusercontent.com/tidalcycles/Dirt-Samples/master/strudel.json')
@@ -36,27 +36,30 @@ const arpeggiator2 = [
 ]
 
 
-const pattern = 0
-const bass = 0
+const pattern = <pattern_Selector>
+const bass = <bassline_Selector>
+const arpeggio = <arp_Selector>
 
 bassline:
 note(pick(basslines, bass))
 .sound("supersaw")
 .postgain(2)
-.room(0.6)
+.room(<reverb_Value>)
 .lpf(700)
 .room(0.4)
 .postgain(pick(gain_patterns, pattern))
+.gain(<p1_Radio>)
 
 
 main_arp: 
-note(pick(arpeggiator1, "<0 1 2 3>/2"))
+note(pick(pick([arpeggiator1, arpeggiator2], arpeggio), "<0 1 2 3>/2"))
 .sound("supersaw")
 .lpf(300)
 .adsr("0:0:.5:.1")
-.room(0.6)
+.room(<reverb_Value>)
 .lpenv(3.3)
 .postgain(pick(gain_patterns, pattern))
+.gain(<p2_Radio>)
 
 
 drums:
@@ -75,7 +78,7 @@ stack(
   s("{~ ~ rim ~ cp ~ rim cp ~!2 rim ~ cp ~ < rim ~ >!2}%8 *2")
   .bank("[KorgDDM110, OberheimDmx]").speed(1.2)
   .postgain(.25),
-)
+).gain(<drums_Toggle>)
 
 drums2: 
 stack(
@@ -92,9 +95,12 @@ stack(
   .hpf(1000)
   .speed(0.5)
   .rarely(jux(rev)),
-)
+).gain(<drums_Toggle>)
+
+// tunes logs all the data and this is the output of that audio into the console
+all(x => x.log())
+
 //Remixed and reproduced from Algorave Dave's code found here: https://www.youtube.com/watch?v=ZCcpWzhekEY
 // all(x => x.gain(mouseX.range(0,1)))
-// all(x => x.log())
 
 // @version 1.2`;

@@ -12,7 +12,7 @@ src/
 │   ├── editorArea.js           # Code editor display toggle
 │   ├── visualiser.js           # D3 audio visualization
 │   ├── textProcessor.js        # Template preprocessing logic
-│   └── settingsManager.js      # JSON save/load functionality
+│   └── jsonHandling.js         # JSON save/load functionality
 ├── tunes.js                    # Music composition template
 └── console-monkey-patch.js     # Audio data interception
 ```

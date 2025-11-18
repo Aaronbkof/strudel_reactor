@@ -102,8 +102,8 @@ Template-based code generation system that:
 - the video is located in the root folder named `Strudel_REPL_Demo_Aaron.mp4`
 
 ## Music Attribution
-Original composition remixed and adapted from:
-- **Algorave Dave's Stranger Things Theme**
+Original composition obtained from Algorave Dave (DJ Dave):
+- Link: https://www.youtube.com/watch?v=ZCcpWzhekEY
 - Modified with additional patterns, controls, and preprocessing system
 
 ## AI Usage

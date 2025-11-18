@@ -150,16 +150,16 @@ export default function Controls({ ProcAndPlay }) {
             {/* json handling import/export */}
             <div className="mb-3 border rounded p-2" style={{ backgroundColor: 'grey' }}>
                 <label className="form-label">Settings</label>
-                <div>
+                <div className="d-flex gap-2">
                     <button
-                        className="btn btn-success btn-sm"
+                        className="btn btn-success btn-sm flex-fill"
                         onClick={downloadSettings}
                     >
-                        Export as JSON
+                        💾 Export as JSON
                     </button>
 
-                    <label htmlFor="settingsUpload" className="btn btn-primary btn-sm mb-0">
-                        Import Settings
+                    <label htmlFor="settingsUpload" className="btn btn-primary btn-sm mb-0 flex-fill">
+                        📁 Import Settings
                     </label>
                     <input
                         // this essentially automatically loads the settings provided by the imported JSON

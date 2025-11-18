@@ -3,7 +3,7 @@ import * as d3 from "d3";
 
 export default function Visualiser() {
     const [values, setValues] = useState([]);
-    const maxItems = 50;
+    const maxItems = 100;
     const maxGainValue = 8 // Y-axis goes from 0 to 10
 
     // to listen for audio events broadcasted from console monkey patch

@@ -183,6 +183,18 @@ export function applySettings(settings) {
 
 // downloads current settings as a JSON file
 export function downloadSettings() {
+    // prompt the user for a filename
+    const defaultName = `strudel-settings-${new Date().toISOString().slice(0, 10)}`;
+    const fileName = prompt('Save settings as:', defaultName);
+
+    // if user cancels, abort the export
+    if (!fileName) {
+        return;
+    }
+
+    // ensure .json extension regardless of user input
+    const finalName = fileName.endsWith('.json') ? fileName : `${fileName}.json`;
+
     const settings = getCurrentSettings();
     const blob = new Blob([JSON.stringify(settings, null, 2)], {
         type: 'application/json'
@@ -190,7 +202,7 @@ export function downloadSettings() {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = `strudel-settings-${Date.now()}.json`;
+    link.download = finalName;
     link.click();
     URL.revokeObjectURL(url);
 }

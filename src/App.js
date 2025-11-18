@@ -111,7 +111,15 @@ export default function StrudelDemo() {
 
     return (
         <div className="App">
-            <h1>Strudel REPL Demo</h1>
+            <header style={{
+                background: 'rgba(0, 0, 0, 0.4)',
+                borderBottom: '2px solid #00ff99',
+                padding: '1.5rem 0',
+                marginBottom: '2rem',
+                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.3)'
+            }}>
+                <h1>🎵 Strudel REPL Demo</h1>
+            </header>
 
             <main className="container-fluid text-start px-4">
                 <div className="row">

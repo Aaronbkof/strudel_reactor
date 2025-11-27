@@ -34,6 +34,30 @@ Note: Again, branch: `aaron_dev` contains a substantial amount of git history co
 5. run `npm start`
 6. navigate to `http://localhost:3000` or other port depending on your port configurations and availability.
 
+# Database Integration (MVC Component)
+
+## Overview
+This is an extension of the original assignment spec and demonstrates a full-stack integration through linking both the React Strudel REPL frontend to an ASP.NET Core Web API backend. The original assignment saved/loaded settings using local JSON files. This implementation builds upon that functionality to additionally house support for a database to which a use may save presets to the localDB or load presets from the DB via HTTP requests to a an custom API endpoint.
+
+as of now the app supports both saving and loading via the original JSON file implementation but can not also save and load settings to an SQL Server instance through an API.
+
+## Setting up the Local Database
+1. launch SSMS and connect (keeping in mind your connection string)
+2. right click on the `Databases` folder in the explorer and click the option `New Database`
+3. enter the database name as `StrudelSettings` then click `add`
+
+## Running the API
+> please complete the Local Database setup first before proceeding!
+
+The set up includes running the API which requires a clone and running of a seperate repo.
+1. firstly switch to the correct branch: `aaron_dev_final_MVC`
+2. clone the API repo: https://github.com/Aaronbkof/strudelReplSettingsAPI.git
+3. launch the API project and from there make sure to switch to the dev branch: `aaron_dev`
+4. view the `appsettings.json` and change the `strudelSettingsDbContext` connection string to have the correct data source. then refresh the data connection.
+5. make sure you are in the root folder, and run `npm i` to install required packages
+6. run the API project.
+> the API end point is defined as a constant (`apiEndpoint`) defined in the `jsonHandling` component make sure to change this in accoradance to what port number your API runs on.
+
 ## Control and Functionalities
 
 ### Playback Controls

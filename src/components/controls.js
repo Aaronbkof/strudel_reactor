@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {downloadSettings, uploadSettings} from "./jsonHandling";
+import { downloadSettings, uploadSettings, savePreset, loadSavedPreset } from "./jsonHandling";
 export default function Controls({ ProcAndPlay }) {
     // default values of sliders
     const [reverbValue, setReverbValue] = useState(0.6);
@@ -167,6 +167,25 @@ export default function Controls({ ProcAndPlay }) {
                         ProcAndPlay();
                     }}
                 />
+            </div>
+
+            {/* MVC component DB save and load latest */}
+            <div className="mb-3 border rounded p-2" style={{ backgroundColor: 'grey' }}>
+                <label className="form-label">Database</label>
+                <div className="d-flex gap-2">
+                    <button
+                        className="btn btn-primary btn-sm flex-fill"
+                        // saves the current preset to the database
+                        onClick={savePreset}>
+                        💾 Save preset to DB
+                    </button>
+                    <button
+                        className="btn btn-success btn-sm flex-fill"
+                        // load the latest saved preset from the database and process and play
+                        onClick={() => loadSavedPreset(ProcAndPlay)}>
+                        📁 Load latest preset from DB
+                    </button>
+                </div>
             </div>
 
             {/* json handling import/export */}

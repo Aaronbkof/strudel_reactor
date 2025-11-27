@@ -235,3 +235,54 @@ export function uploadSettings(event, onLoadCallback) {
     };
     reader.readAsText(file);
 }
+
+// ------------------------------------------------------------------------ //
+// this section houses the expanded functionality
+// for saving and loading the latests presets from a local db via a custom API endpoint.
+// the API is provided by a seperate sln project, please refer to the README for more info
+// ------------------------------------------------------------------------ //
+
+// specified API endpoint connectivity for saving/loading presets from a DB
+const apiEndpoint = 'https://localhost:7286/api/strudelSettings';
+
+// save preset to database
+export async function savePreset() {
+    const settings = getCurrentSettings();
+    settings.name = 'Entry-' + Date.now();
+
+    // send to API via POST request
+    try {
+        await fetch(`${apiEndpoint}/SavePreset`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(settings)
+        });
+        // notify user of success
+        alert('✅ Saved to database!');
+    } catch (error) {
+        alert('❌ Save error: ' + error.message);
+    }
+}
+
+// load latest from database
+export async function loadSavedPreset(onLoadCallback) {
+
+    // fetch from DB via GET request through API
+    try {
+        const response = await fetch(`${apiEndpoint}/GetSavedPreset`);
+        const settings = await response.json();
+        applySettings(settings);
+        alert('✅ Loaded from database!');
+
+        // if successful, callback and reproc and play
+        if (onLoadCallback) {
+            setTimeout(function () {
+                onLoadCallback();
+                // small delay for DOM updates to properly load
+            }, 100);
+        }
+        // on failure, alert user
+    } catch (error) {
+        alert('❌ Load error: ' + error.message);
+    }
+}
